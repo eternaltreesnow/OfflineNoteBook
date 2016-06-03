@@ -1,0 +1,152 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    <head>
+        <meta http-equiv="content-type" content="text/html" charset="UTF-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="static/img/icon-notebook.png">
+        <title>Offline Notebook</title>
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="node_modules/bootstrap/flatly/bootstrap.min.css">
+        <!-- Normalize.css -->
+        <link rel="stylesheet" href="node_modules/normalize.css">
+        <!-- Google Prettify -->
+        <link rel="stylesheet" href="node_modules/bootstrap-wysiwyg/external/google-code-prettify/prettify.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.css">
+        <!-- jQuery -->
+        <script src="node_modules/jquery/dist/jquery.min.js"></script>
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- Warning: Respond.js doesn't work if you view the page via file:// -->
+        <!-- [if lt IE 9]>
+            <script src="../lib/html5shiv.min.js"></script>
+            <script src="../lib/respond.min.js"></script>
+        <![endif] -->
+        <link rel="stylesheet" href="static/css/index.css">
+    </head>
+    <body>
+        <div class="navbar navbar-default navbar-fixed-top header" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle Navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="#" class="navbar-brand navbar-logo">
+                        <span class="navbar-logo-txt"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;Offline NoteBook</span>
+                    </a>
+                </div>
+                <div class="navbar-collapse collapse" id="navbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown" role="presentation">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <span class="glyphicon glyphicon-user"></span>
+                                <span id="userName">Stranger</span>
+                                <span class="caret"></span>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="javascript:void(0);" class="menu-link"><span class="glyphicon glyphicon-off"></span>&nbsp;退出登录</a>
+                                    </li>
+                                </ul>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="main-page">
+            <div class="parent-sidebar">
+                <div class="parent-sidebar-header">
+                    <a href="javascript:void(0);" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus"></span>&nbsp;新建</a>
+                    <a href="javascript:void(0);" class="btn btn-warning btn-sm pull-right disabled"><span class="glyphicon glyphicon-trash"></span>&nbsp;删除</a>
+                </div>
+                <ul class="nav parent-sidebar-content">
+                    <li class="active"><a href="javascript:void(0);"><span class="glyphicon glyphicon-folder-open"></span>&nbsp;ppp</a></li>
+                    <li><a href="javascript:void(0);"><span class="glyphicon glyphicon-folder-close"></span>&nbsp;ooo</a></li>
+                </ul>
+            </div>
+            <div class="child-sidebar">
+                <div class="child-sidebar-header">
+                    <div class="child-sidebar-title">title</div>
+                </div>
+                <ul class="nav child-sidebar-content">
+                    <li class="active"><a href="javascript:void(0);"><span class="glyphicon glyphicon-tag"></span>&nbsp;ppp</a></li>
+                    <li><a href="javascript:void(0);"><span class="glyphicon glyphicon-tag"></span>&nbsp;ppp</a></li>
+                </ul>
+            </div>
+            <div class="note-container">
+                <div class="container-fluid note-title-container form-inline">
+                    <div class="col-md-9 note-title form-group">
+                        <label for="">Title :</label>
+                        <input type="text" class="form-control note-title-input">
+                    </div>
+                    <div class="col-md-3 note-title-btn-group">
+                        <a href="javascript:void(0);" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span>&nbsp;保存</a>
+                        <a href="javascript:void(0);" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>&nbsp;删除</a>
+                    </div>
+                </div>
+                <div class="note-toolbar-container" data-role="editor-toolbar" data-target="#wysiwygEditor">
+                    <div class="btn-group">
+                        <a class="btn btn-toolbar dropdown-toggle" data-toggle="dropdown" title="" data-original-title="Font"><i class="icon-font"></i><b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a data-edit="fontName Serif" style="font-family:'Serif'">Serif</a></li>
+                            <li><a data-edit="fontName Sans" style="font-family:'Sans'">Sans</a></li>
+                            <li><a data-edit="fontName Arial" style="font-family:'Arial'">Arial</a></li>
+                            <li><a data-edit="fontName Arial Black" style="font-family:'Arial Black'">Arial Black</a></li>
+                            <li><a data-edit="fontName Courier" style="font-family:'Courier'">Courier</a></li>
+                            <li><a data-edit="fontName Courier New" style="font-family:'Courier New'">Courier New</a></li>
+                            <li><a data-edit="fontName Comic Sans MS" style="font-family:'Comic Sans MS'">Comic Sans MS</a></li>
+                            <li><a data-edit="fontName Helvetica" style="font-family:'Helvetica'">Helvetica</a></li>
+                            <li><a data-edit="fontName Impact" style="font-family:'Impact'">Impact</a></li>
+                            <li><a data-edit="fontName Lucida Grande" style="font-family:'Lucida Grande'">Lucida Grande</a></li>
+                            <li><a data-edit="fontName Lucida Sans" style="font-family:'Lucida Sans'">Lucida Sans</a></li>
+                            <li><a data-edit="fontName Tahoma" style="font-family:'Tahoma'">Tahoma</a></li>
+                            <li><a data-edit="fontName Times" style="font-family:'Times'">Times</a></li>
+                            <li><a data-edit="fontName Times New Roman" style="font-family:'Times New Roman'">Times New Roman</a></li>
+                            <li><a data-edit="fontName Verdana" style="font-family:'Verdana'">Verdana</a></li>
+                        </ul>
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn btn-toolbar dropdown-toggle" data-toggle="dropdown" title="" data-original-title="Font Size"><i class="icon-text-height"></i>&nbsp;<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a data-edit="fontSize 5"><font size="5">Huge</font></a></li>
+                            <li><a data-edit="fontSize 3"><font size="3">Normal</font></a></li>
+                            <li><a data-edit="fontSize 1"><font size="1">Small</font></a></li>
+                        </ul>
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn btn-toolbar" data-edit="bold" title="Bold (Ctrl/Cmd+B)"data-original-title="Bold (Ctrl/Cmd+B)"><i class="icon-bold"></i></a>
+                        <a class="btn btn-toolbar" data-edit="italic" data-original-title="Italic (Ctrl/Cmd+I)"><i class="icon-italic"></i></a>
+                        <a class="btn btn-toolbar" data-edit="strikethrough" title="" data-original-title="Strikethrough"><i class="icon-strikethrough"></i></a>
+                        <a class="btn btn-toolbar" data-edit="underline"data-original-title="Underline (Ctrl/Cmd+U)"><i class="icon-underline"></i></a>
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn btn-toolbar" data-edit="insertunorderedlist" title="" data-original-title="Bullet list"><i class="icon-list-ul"></i></a>
+                        <a class="btn btn-toolbar" data-edit="insertorderedlist" title="" data-original-title="Number list"><i class="icon-list-ol"></i></a>
+                        <a class="btn btn-toolbar" data-edit="outdent" title="" data-original-title="Reduce indent (Shift+Tab)"><i class="icon-indent-left"></i></a>
+                        <a class="btn btn-toolbar" data-edit="indent" title="" data-original-title="Indent (Tab)"><i class="icon-indent-right"></i></a>
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn btn-toolbar" data-edit="justifyleft" title="" data-original-title="Align Left (Ctrl/Cmd+L)"><i class="icon-align-left"></i></a>
+                        <a class="btn btn-toolbar" data-edit="justifycenter" title="" data-original-title="Center (Ctrl/Cmd+E)"><i class="icon-align-center"></i></a>
+                        <a class="btn btn-toolbar" data-edit="justifyright" title="" data-original-title="Align Right (Ctrl/Cmd+R)"><i class="icon-align-right"></i></a>
+                        <a class="btn btn-toolbar" data-edit="justifyfull" title="" data-original-title="Justify (Ctrl/Cmd+J)"><i class="icon-align-justify"></i></a>
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn btn-toolbar" data-edit="undo" title="" data-original-title="Undo (Ctrl/Cmd+Z)"><i class="icon-undo"></i></a>
+                        <a class="btn btn-toolbar" data-edit="redo" title="" data-original-title="Redo (Ctrl/Cmd+Y)"><i class="icon-repeat"></i></a>
+                    </div>
+                </div>
+                <div class="note-content-container">
+                    <div class="note-editor" id="wysiwygEditor"></div>
+                </div>
+            </div>
+        </div>
+        <script src="node_modules/sea.js"></script>
+        <script>
+            seajs.use("./static/js/index.js");
+        </script>
+    </body>
+</html>
