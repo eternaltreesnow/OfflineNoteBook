@@ -43,19 +43,28 @@
                         <li class="dropdown" role="presentation">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                 <span class="glyphicon glyphicon-user"></span>
-                                <span id="userName">Stranger</span>
+                                <span id="userName">未登录</span>
                                 <span class="caret"></span>
                                 <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="javascript:void(0);" class="menu-link"><span class="glyphicon glyphicon-off"></span>&nbsp;退出登录</a>
+                                    <li id="loginContainer">
+                                        <a href="javascript:void(0);" class="menu-link" id="loginBtn"><span class="glyphicon glyphicon-user"></span>&nbsp;登录</a>
+                                        <a href="javascript:void(0);" class="menu-link" id="registerBtn"><span class="glyphicon glyphicon-open"></span>&nbsp;注册</a>
+                                    </li>
+                                    <li id="logoutContainer">
+                                        <a href="javascript:void(0);" class="menu-link" id="logoutBtn"><span class="glyphicon glyphicon-off"></span>&nbsp;退出登录</a>
                                     </li>
                                 </ul>
                             </a>
                         </li>
                     </ul>
                 </div>
+                <!-- Alert Framework -->
+                <div class="alert alert-dismissible fade common-alert" role="alert" id="infoAlert">
+                    <p id="infoAlertText">&nbsp;</p>
+                </div>
             </div>
         </div>
+        <input type="hidden" id="loginId" value="0">
         <div class="main-page">
             <div class="parent-sidebar">
                 <div class="parent-sidebar-header">
@@ -141,6 +150,63 @@
                 </div>
                 <div class="note-content-container">
                     <div class="note-editor" id="wysiwygEditor"></div>
+                </div>
+            </div>
+        </div>
+        <div id="loginModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">用户登录</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-dismissible fade modal-alert" role="alert" id="modalAlert">
+                            <p id="modalAlertText">&nbsp;</p>
+                        </div>
+                        <form id="loginForm">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="usernameInput" placeholder="用户名...">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="passwordInput" placeholder="密码...">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="javascript:void(0);" class="btn btn-primary" id="loginModalBtn">登录</a>
+                        <a href="javascript:void(0);" class="btn btn-default" id="linkRegisterBtn">注册</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="registerModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">用户注册</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-dismissible fade modal-alert" role="alert" id="modalAlert">
+                            <p id="modalAlertText">&nbsp;</p>
+                        </div>
+                        <form id="registerForm">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="usernameInput" placeholder="用户名...">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="nameInput" placeholder="昵称...">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="passwordInput" placeholder="密码...">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="javascript:void(0);" class="btn btn-primary" id="registerModalBtn">注册</a>
+                        <a href="javascript:void(0);" class="btn btn-default" id="linkLoginBtn">登录</a>
+                    </div>
                 </div>
             </div>
         </div>
