@@ -68,32 +68,27 @@
         <div class="main-page">
             <div class="parent-sidebar">
                 <div class="parent-sidebar-header">
-                    <a href="javascript:void(0);" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus"></span>&nbsp;新建</a>
-                    <a href="javascript:void(0);" class="btn btn-warning btn-sm pull-right disabled"><span class="glyphicon glyphicon-trash"></span>&nbsp;删除</a>
+                    <a href="javascript:void(0);" class="btn btn-success btn-sm" id="createBtn"><span class="glyphicon glyphicon-plus"></span>&nbsp;新建</a>
+                    <a href="javascript:void(0);" class="btn btn-warning btn-sm pull-right disabled" id="deleteFolderBtn"><span class="glyphicon glyphicon-trash"></span>&nbsp;删除</a>
                 </div>
-                <ul class="nav parent-sidebar-content">
-                    <li class="active"><a href="javascript:void(0);"><span class="glyphicon glyphicon-folder-open"></span>&nbsp;ppp</a></li>
-                    <li><a href="javascript:void(0);"><span class="glyphicon glyphicon-folder-close"></span>&nbsp;ooo</a></li>
-                </ul>
+                <ul class="nav parent-sidebar-content" id="folderMenu"></ul>
             </div>
             <div class="child-sidebar">
                 <div class="child-sidebar-header">
-                    <div class="child-sidebar-title">title</div>
+                    <div class="child-sidebar-title" id="folderTitle">&nbsp;</div>
                 </div>
-                <ul class="nav child-sidebar-content">
-                    <li class="active"><a href="javascript:void(0);"><span class="glyphicon glyphicon-tag"></span>&nbsp;ppp</a></li>
-                    <li><a href="javascript:void(0);"><span class="glyphicon glyphicon-tag"></span>&nbsp;ppp</a></li>
-                </ul>
+                <ul class="nav child-sidebar-content" id="noteMenu"></ul>
             </div>
             <div class="note-container">
                 <div class="container-fluid note-title-container form-inline">
+                    <input type="hidden" id="noteId">
                     <div class="col-md-9 note-title form-group">
                         <label for="">Title :</label>
-                        <input type="text" class="form-control note-title-input">
+                        <input type="text" class="form-control note-title-input" id="noteTitle" placeholder="Note title...">
                     </div>
                     <div class="col-md-3 note-title-btn-group">
-                        <a href="javascript:void(0);" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span>&nbsp;保存</a>
-                        <a href="javascript:void(0);" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>&nbsp;删除</a>
+                        <a href="javascript:void(0);" class="btn btn-primary" id="saveNoteBtn"><span class="glyphicon glyphicon-save"></span>&nbsp;保存</a>
+                        <a href="javascript:void(0);" class="btn btn-danger" id="deleteNoteBtn"><span class="glyphicon glyphicon-trash"></span>&nbsp;删除</a>
                     </div>
                 </div>
                 <div class="note-toolbar-container" data-role="editor-toolbar" data-target="#wysiwygEditor">
@@ -206,6 +201,70 @@
                     <div class="modal-footer">
                         <a href="javascript:void(0);" class="btn btn-primary" id="registerModalBtn">注册</a>
                         <a href="javascript:void(0);" class="btn btn-default" id="linkLoginBtn">登录</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="createModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">新建文件夹/笔记</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-dismissible fade modal-alert" role="alert" id="modalAlert">
+                            <p id="modalAlertText">&nbsp;</p>
+                        </div>
+                        <div class="form-inline form-group">
+                            <input type="hidden" id="createType" value="0">
+                            <label class="col-lg-4 control-label">新建类型 :</label>
+                            <div class="col-lg-3 radio">
+                                <label><input type="radio" name="createType" id="optionFolder" value="folder" checked>文件夹</label>
+                            </div>
+                            <div class="col-lg-3 radio">
+                                <label><input type="radio" name="createType" id="optionNote" value="note">笔记</label>
+                            </div>
+                        </div>
+                        <div class="createForm" id="folderForm">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="folderTitleInput" placeholder="文件夹名称...">
+                            </div>
+                        </div>
+                        <div class="createForm" id="noteForm" style="display: none;">
+                            <div class="form-group">
+                                <select id="selectFolder" class="form-control">
+                                    <option value="1">1</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="noteTitleInput" placeholder="笔记题目(可选)...">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="javascript:void(0);" class="btn btn-primary" id="createModalBtn">新建</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="deleteFolderModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">删除文件夹</h4>
+                    </div>
+                    <input type="hidden" id="deleteFolderId" value>
+                    <div class="modal-body">
+                        <div class="alert alert-dismissible fade modal-alert" role="alert" id="modalAlert">
+                            <p id="modalAlertText">&nbsp;</p>
+                        </div>
+                        确认删除该文件夹 ? 该操作将删除对应文件夹中的笔记.
+                    </div>
+                    <div class="modal-footer">
+                        <a href="javascript:void(0);" class="btn btn-warning" id="deleteFolderModalBtn">确认删除</a>
+                        <a class="btn btn-default" data-dismiss="modal">取消</a>
                     </div>
                 </div>
             </div>

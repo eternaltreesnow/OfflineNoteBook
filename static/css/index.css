@@ -10,6 +10,7 @@ ul.dropdown-menu li a.menu-link {
 /* Common Alert */
 .common-alert {
     position: absolute;
+    top: 26px;
     width: 600px;
     margin-left: 25%;
     margin-top: 1px;
@@ -188,4 +189,7 @@ a.btn-active:hover {
     height: 100%;
     overflow: scroll;
     padding: 4px;
+}
+.createForm {
+    padding-top: 30px;
 }

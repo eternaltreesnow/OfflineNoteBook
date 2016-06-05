@@ -1,18 +1,16 @@
 define(function(require, exports, module) {
     var Session = require('../model/session');
 
-    function _updateMaxId() {
-        var id = _getMaxId();
-        localStorage.setItem('max-id', id + 1);
-        return id + 1;
-    }
-
-    function _getMaxId() {
-        return parseInt(localStorage.getItem('max-id'));
+    function _getMaxUserId() {
+        var max_id = JSON.parse(localStorage.getItem('max-id'));
+        var id = parseInt(max_id.user_id) + 1;
+        max_id.user_id = id;
+        localStorage.setItem('max-id', JSON.stringify(max_id));
+        return id;
     }
 
     function _setUser(username, name, password) {
-        var id = _updateMaxId();
+        var id = _getMaxUserId();
         var user = new Object();
         user.id = id;
         user.username = username;
@@ -29,7 +27,13 @@ define(function(require, exports, module) {
     }
 
     function _getUserList() {
-        return JSON.parse(localStorage['user']);
+        var user = localStorage['user'];
+        if (user !== undefined) {
+            return JSON.parse(localStorage['user']);
+        } else {
+            return '';
+        }
+
     }
 
     function _getUserById(id) {
@@ -45,12 +49,30 @@ define(function(require, exports, module) {
 
     function _checkUsername(username) {
         var userList = _getUserList();
-        userList.map(function(item) {
-            if (item.username === username) {
-                return true;
+        if (userList.length === 0) {
+            return false;
+        } else {
+            userList.map(function(item) {
+                if (item.username === username) {
+                    return true;
+                }
+            });
+            return false;
+        }
+    }
+
+    exports.initial = function _init() {
+        if (localStorage['user'] === undefined) {
+            localStorage.setItem('user', '[]');
+        }
+        if (localStorage['max-id'] === undefined) {
+            var max_id = {
+                user_id: 0,
+                note_id: 0,
+                folder_id: 0
             }
-        });
-        return false;
+            localStorage.setItem('max-id', JSON.stringify(max_id));
+        }
     }
 
     exports.checkUser = function _checkUser(username, password) {
